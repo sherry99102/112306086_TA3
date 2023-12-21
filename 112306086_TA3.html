@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b !== 0) {
+                return a / b;
+            } else {
+                throw new Error("Cannot divide by zero");
+            }
+        }
+
+        function calculate() {
+            var num1 = parseFloat(prompt('Enter the first number:'));
+            var num2 = parseFloat(prompt('Enter the second number:'));
+            var operation = prompt('Enter the operation (+, -, *, /):');
+
+            if (isNaN(num1) || isNaN(num2) || !"+-*/".includes(operation) || operation.length !== 1) {
+                alert('Invalid input. Please enter valid numbers and operation.');
+                return;
+            }
+
+            try {
+                switch (operation) {
+                    case '+':
+                        console.log('Result:', add(num1, num2));
+                        break;
+                    case '-':
+                        console.log('Result:', subtract(num1, num2));
+                        break;
+                    case '*':
+                        console.log('Result:', multiply(num1, num2));
+                        break;
+                    case '/':
+                        console.log('Result:', divide(num1, num2));
+                        break;
+                    default:
+                        console.log('Invalid operation.');
+                }
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
+        }
+
+        while (true) {
+            calculate(); 
+
+            var continueCalculation = prompt('Do you want to perform another calculation? (yes/no)');
+            if (continueCalculation.toLowerCase() !== 'yes') {
+                break; 
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
